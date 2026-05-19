@@ -30,10 +30,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* cursor none vetëm kur landing page është aktive */
-body.landing-cursor { cursor: none; }
-body.landing-cursor button,
-body.landing-cursor a { cursor: none; }
+
 
 /* cursor */
 #cursor {

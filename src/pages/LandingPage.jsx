@@ -180,11 +180,10 @@ export default function LandingPage() {
           <em>finally organized.</em>
         </h1>
 
-        <p className="hero-p anim-2">
-          Track every application, update statuses, and know exactly where
-          each opportunity stands — all in your browser, no account needed.
-        </p>
-
+       <p className="hero-p anim-2">
+  Track every application, update statuses, and know exactly where
+  each opportunity stands — all in one organized place.
+</p>
         <div className="hero-actions anim-3">
           <button className="btn-cta" onClick={() => navigate(appDest)}>
             {authed ? "Go to dashboard →" : "Get started →"}
@@ -194,19 +193,19 @@ export default function LandingPage() {
           </button>
         </div>
 
-        <div className="hero-logos anim-4">
-          {[
-            "Kanban board",
-            "Calendar view",
-            "Search & filter",
-            "Auto-save",
-            "No sign-up",
-          ].map((t) => (
-            <span key={t} className="hero-logo-tag">
-              {t}
-            </span>
-          ))}
-        </div>
+ <div className="hero-logos anim-4">
+  {[
+    "Kanban board",
+    "Calendar view",
+    "Search & filter",
+    "Auto-save",
+    "Progress tracking",
+  ].map((t) => (
+    <span key={t} className="hero-logo-tag">
+      {t}
+    </span>
+  ))}
+</div>
       </section>
 
       {/* HOW IT WORKS */}
@@ -302,24 +301,29 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="cta-section">
-        <div className="cta-inner">
-          <h2 className="cta-h2">Start tracking today.</h2>
-          <p className="cta-p">
-            Add your first application. No account, no subscription — your data
-            stays in your browser.
-          </p>
-          <button className="btn-cta" onClick={() => navigate(appDest)}>
-            {authed ? "Go to dashboard →" : "Get started →"}
-          </button>
-        </div>
-      </section>
+   {/* CTA */}
+<section className="cta-section">
+  <div className="cta-inner">
+    <h2 className="cta-h2">Start tracking today.</h2>
+    <p className="cta-p">
+      Keep every application, status, and note in one place — 
+      so you always know exactly where you stand in your job search.
+    </p>
+    <button className="btn-cta" onClick={() => navigate(appDest)}>
+      {authed ? "Go to dashboard →" : "Get started →"}
+    </button>
+  </div>
+</section>
 
-      <footer className="footer">
-        <span>© 2025 JobTrackr</span>
-        <span>Your data stays in your browser · No account required</span>
-      </footer>
-    </div>
-  );
-}
+<footer className="footer">
+  <span>© 2026 JobTrackr</span>
+  <span style={{ color: "var(--text-muted)", fontSize: 12 }}>
+    Built with React · Data stays in your browser
+  </span>
+  <span style={{ color: "var(--text-muted)", fontSize: 12 }}>
+    Made for students & early careers
+  </span>
+</footer>
+      </div>
+    );
+  }
