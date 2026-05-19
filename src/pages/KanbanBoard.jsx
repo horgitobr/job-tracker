@@ -1,3 +1,4 @@
+// KanbanBoard component
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Send, Users, CheckCircle, XCircle, Plus } from "lucide-react";
