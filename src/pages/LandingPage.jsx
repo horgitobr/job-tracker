@@ -173,11 +173,7 @@ export default function LandingPage() {
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-eyebrow anim-0">
-          <span className="hero-eyebrow-dot" />
-          Free · No sign-up required
-        </div>
-
+       
         <h1 className="hero-h1 anim-1">
           Your job search,
           <br />
