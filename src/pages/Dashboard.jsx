@@ -18,6 +18,7 @@ const STAT_CARDS = [
   { label: "Rejected",       key: "rejected",   Icon: TrendingUp,  color: "#f87171", sub: "closed"    },
 ];
 
+// Nudge the user when applications have been sitting idle for too long
 function getInsight(apps) {
   if (!apps.length) return null;
 
@@ -53,6 +54,7 @@ export default function Dashboard() {
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 5);
 
+  // Minimum of 1 prevents division by zero when there are no applications yet
   const barMax = Math.max(stats.applied, stats.interview, stats.offer, stats.rejected, 1);
   const bars = [
     { label: "Applied",   val: stats.applied,   color: "#3b82f6" },

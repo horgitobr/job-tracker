@@ -130,6 +130,7 @@ export function useApplications() {
       date: app.date || new Date().toISOString().split("T")[0],
       starred: false,
     };
+    // Newest entry at the front so recent activity shows first
     save([newApp, ...applications]);
     return newApp;
   };
@@ -171,6 +172,7 @@ export function useApplications() {
     offer: applications.filter((a) => a.status === "offer").length,
     rejected: applications.filter((a) => a.status === "rejected").length,
     starred: applications.filter((a) => a.starred).length,
+    // Anything past "applied" counts as a response from the company
     responseRate: applications.length
       ? Math.round(
           (applications.filter((a) => a.status !== "applied").length /

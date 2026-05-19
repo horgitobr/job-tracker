@@ -18,6 +18,7 @@ export default function KanbanBoard() {
   const { applications, updateStatus, stats } = useApplications();
   const [dragging, setDragging] = useState(null);
   const [overCol,  setOverCol]  = useState(null);
+  // Prevents the card's onClick from firing right after a drag ends
   const didDrag = useRef(false);
 
   const byStatus = (s) => applications.filter((a) => a.status === s);
@@ -40,6 +41,7 @@ export default function KanbanBoard() {
   const onDragEnd = () => {
     setDragging(null);
     setOverCol(null);
+    // Small delay because the browser fires click right after dragend
     setTimeout(() => { didDrag.current = false; }, 80);
   };
 

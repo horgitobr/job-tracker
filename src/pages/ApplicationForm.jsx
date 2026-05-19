@@ -33,6 +33,7 @@ export default function ApplicationForm() {
   const isEdit = Boolean(id);
   const { addApplication, updateApplication, getById } = useApplications();
 
+  // Prefill status when navigating here from a kanban column's "+ Add card" button
   const statusParam = searchParams.get("status");
   const initialStatus =
     !isEdit && statusParam && STATUS_CONFIG[statusParam] ? statusParam : "applied";
@@ -40,6 +41,7 @@ export default function ApplicationForm() {
   const [form, setForm] = useState({ ...empty, status: initialStatus });
   const [errors, setErrors] = useState({});
 
+  // Populate the form when editing an existing application
   useEffect(() => {
     if (isEdit) {
       const found = getById(id);

@@ -9,7 +9,9 @@ import {
   Briefcase,
   Menu,
   X,
+  LogOut,
 } from "lucide-react";
+import { getCurrentUser, logout } from "../auth";
 
 const NAV_ITEMS = [
   { path: "/dashboard",    Icon: LayoutDashboard, label: "Dashboard",    end: true },
@@ -21,8 +23,15 @@ const NAV_ITEMS = [
 export default function Sidebar() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  // Re-read on each render so the name updates immediately after login/logout
+  const user = getCurrentUser();
 
   const close = () => setOpen(false);
+
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
 
   return (
     <>
@@ -64,6 +73,7 @@ export default function Sidebar() {
           </div>
           <button
             className="sb-close-btn"
+            // Stop the logo row's onClick from also firing when this button is clicked
             onClick={(e) => { e.stopPropagation(); close(); }}
             aria-label="Close navigation"
           >
@@ -94,6 +104,17 @@ export default function Sidebar() {
           <Plus size={15} strokeWidth={1.75} />
           New Application
         </button>
+
+        {user && (
+          <div className="sb-footer">
+            <div className="sb-user-greeting">Hi, {user.name.split(" ")[0]}</div>
+            <div className="sb-user-email">{user.email}</div>
+            <button className="sb-logout" onClick={handleLogout}>
+              <LogOut size={13} strokeWidth={1.75} />
+              Logout
+            </button>
+          </div>
+        )}
       </aside>
     </>
   );

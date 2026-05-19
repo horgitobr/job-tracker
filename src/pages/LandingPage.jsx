@@ -9,6 +9,7 @@ import {
   Filter,
   Briefcase,
 } from "lucide-react";
+import { getCurrentUser } from "../auth";
 
 const features = [
   {
@@ -83,6 +84,8 @@ const kanban = [
 
 export default function LandingPage() {
   const navigate     = useNavigate();
+  const authed       = !!getCurrentUser();
+  const appDest      = authed ? "/dashboard" : "/login";
   const cursorRef    = useRef(null);
   const ringRef      = useRef(null);
   const spotlightRef = useRef(null);
@@ -92,6 +95,7 @@ export default function LandingPage() {
   useEffect(() => {
     const p = posRef.current;
     let running = true;
+    // Custom cursor only applies to this page — remove it on cleanup
     document.body.classList.add("landing-cursor");
 
     const onMove = (e) => {
@@ -109,6 +113,7 @@ export default function LandingPage() {
 
     const tick = () => {
       if (!running) return;
+      // Lerp so the ring trails the cursor smoothly instead of snapping to it
       p.rx += (p.mx - p.rx) * 0.1;
       p.ry += (p.my - p.ry) * 0.1;
       if (ringRef.current) {
@@ -157,11 +162,11 @@ export default function LandingPage() {
           </a>
         </div>
         <div className="nav-right">
-          <button className="nav-sign" onClick={() => navigate("/applications")}>
-            Applications
+          <button className="nav-sign" onClick={() => navigate(appDest)}>
+            {authed ? "Dashboard" : "Login"}
           </button>
-          <button className="nav-cta" onClick={() => navigate("/dashboard")}>
-            Get started →
+          <button className="nav-cta" onClick={() => navigate(authed ? "/dashboard" : "/register")}>
+            {authed ? "Go to app →" : "Sign up →"}
           </button>
         </div>
       </nav>
@@ -185,8 +190,8 @@ export default function LandingPage() {
         </p>
 
         <div className="hero-actions anim-3">
-          <button className="btn-cta" onClick={() => navigate("/dashboard")}>
-            Start tracking →
+          <button className="btn-cta" onClick={() => navigate(appDest)}>
+            {authed ? "Go to dashboard →" : "Get started →"}
           </button>
           <button className="btn-outline" onClick={scrollToFeatures}>
             See how it works
@@ -309,8 +314,8 @@ export default function LandingPage() {
             Add your first application. No account, no subscription — your data
             stays in your browser.
           </p>
-          <button className="btn-cta" onClick={() => navigate("/dashboard")}>
-            Open dashboard →
+          <button className="btn-cta" onClick={() => navigate(appDest)}>
+            {authed ? "Go to dashboard →" : "Get started →"}
           </button>
         </div>
       </section>

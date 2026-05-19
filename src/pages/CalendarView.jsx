@@ -38,6 +38,7 @@ export default function CalendarView() {
     setCurrent(({ year, month }) =>
       month === 0 ? { year: year - 1, month: 11 } : { year, month: month - 1},
     );
+    // Clear the detail panel when switching months
     setSelectedDay(null);
   };
   const next = () => {
@@ -59,6 +60,7 @@ export default function CalendarView() {
     }
   });
 
+  // Pad the start with nulls so day 1 lands on the correct weekday column
   const cells = [];
   for (let i = 0; i < firstDay; i++) cells.push(null);
   for (let d = 1; d <= daysInMonth; d++) cells.push(d);
